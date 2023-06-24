@@ -1,9 +1,10 @@
 import { DefaultLayout } from '@albadri/layouts';
-import topNavigation from '../assets/navigations/top.yaml';
+import topNavigation from '../assets/navigations.yaml';
 
 export default () => {
+  console.log(topNavigation.top)
   return (
-    <DefaultLayout TopNavigation={topNavigation.nav}>
+    <DefaultLayout TopNavigation={topNavigation.top}>
       <div>a</div>
     </DefaultLayout>
   )  

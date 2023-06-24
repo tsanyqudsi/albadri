@@ -1,0 +1,9 @@
+top:
+  logo:
+    fileName: logo.png
+    alt: logo
+  links:
+    - label: Home
+      url: /
+    - label: About
+      url: /about

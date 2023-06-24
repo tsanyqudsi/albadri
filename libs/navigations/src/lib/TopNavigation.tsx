@@ -1,10 +1,29 @@
-import { AppBar, Link } from '@mui/material';
+import { AppBar, Container, Link, Stack, Toolbar, useScrollTrigger } from '@mui/material';
 import { Link as RouterLink } from 'react-router-dom';
 import type { NavigationProps } from './types';
+import React from 'react';
 
 export interface TopNavigationProps {
-  data: NavigationProps[]
+  links: NavigationProps[],
+  logo?: LogoProps,
+  background?: string
 }
+
+interface LogoProps {
+  fileName: string,
+  alt: string,
+}
+
+// const ElevationScroll  = () =>{
+//   const trigger = useScrollTrigger({
+//     disableHysteresis: true,
+//     threshold: 0,
+//   });
+
+//   return React.cloneElement(children, {
+//     elevation: trigger ? 4 : 0,
+//   });
+// }
 
 const links = (props: NavigationProps[]) => {
   return props.map((value, index) => {
@@ -12,10 +31,21 @@ const links = (props: NavigationProps[]) => {
   })
 }
 
+const Logo = (props: LogoProps) => {
+  return <img src={props.fileName} alt={props.alt}/>
+}
+
 export const TopNavigation = (props: TopNavigationProps) => {
   return (
-    <AppBar>
-      {links(props.data)}
+      <AppBar>
+      <Container maxWidth="xl">
+        <Toolbar disableGutters>
+          {props.logo && <Logo {...props.logo}/>}
+          <Stack direction="row" justifyContent={'space-around'}>
+            {links(props.links)}
+          </Stack>
+        </Toolbar>
+      </Container>
     </AppBar>
   );
 }
